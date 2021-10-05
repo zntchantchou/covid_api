@@ -2,8 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateTagInput {
+  name: String!
+}
+
+input CreateTodoInput {
+  deadline: String
+  isCompleted: Boolean!
+  tags: [String!]
+  title: String!
+}
+
+type Mutation {
+  createTag(newTag: CreateTagInput!): Tag!
+  createTodo(newTodo: CreateTodoInput!): Todo!
+  updateTodo(id: String!, updatedTodo: CreateTodoInput!): Todo!
+}
+
 type Query {
+  getAll: [Todo!]!
   getTag(id: String!): Tag!
+  getTags(ids: [String!]!): [Tag!]!
   getTodo(id: String!): Todo!
 }
 
