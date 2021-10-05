@@ -1,0 +1,26 @@
+
+  
+  
+  ✘ Create Tag dtos @cancelled(21-10-05 14:06)
+  ✘ Create Todo dtos @cancelled(21-10-05 11:06)
+  ✔ Create Todo schema @started(21-10-05 10:18) @done(21-10-05 11:06) @lasted(48m21s)
+  ✔ Create Todo providers @started(21-10-05 10:29) @done(21-10-05 11:06) @lasted(37m25s)
+  ✔ Create Todo gql types @done(21-10-05 11:06)
+  ✔ Create Tag providers @done(21-10-05 12:21)
+  ✔ Create Tag schema @done(21-10-05 14:06)
+  ✔ Create Todo resolvers @started(21-10-05 12:20) @done(21-10-05 14:06) @lasted(1h46m32s)
+  ✔ Create Tag gql types @done(21-10-05 14:06)
+  
+  
+  Todo:
+  ☐ export resolvers
+  ☐ Create Todo service
+  ☐ Create Todo module
+  ☐ Create Tag module
+  ☐ Create Tag service
+  ☐ Create Tag resolvers 
+
+
+
+  
+  

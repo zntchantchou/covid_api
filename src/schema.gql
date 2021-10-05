@@ -1,0 +1,23 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  getTag(id: String!): Tag!
+  getTodo(id: String!): Todo!
+}
+
+"""tag"""
+type Tag {
+  id: ID!
+  name: String!
+}
+
+"""todo"""
+type Todo {
+  deadline: String
+  id: ID!
+  isCompleted: Boolean!
+  tags: [Tag!]
+  title: String!
+}
