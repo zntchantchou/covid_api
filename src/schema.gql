@@ -2,6 +2,17 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""country"""
+type Country {
+  combinedKey: String!
+  country: String!
+  iso: String!
+  lat: String!
+  long: String!
+  population: String
+  provinces: [Province!]!
+}
+
 input CreateTagInput {
   name: String!
 }
@@ -13,14 +24,51 @@ input CreateTodoInput {
   title: String!
 }
 
+"""dailyReport"""
+type DailyReportModel {
+  active: Float
+  caseFatalityRatio: Float
+  combinedKey: String
+  confirmed: Float
+  countryRegion: String
+  createdAt: DateTime
+  deaths: Float
+  fips: Float
+  incidenceRate: Float
+  iso: String
+  lat: Float
+  long: Float
+  provinceState: String
+  recovered: Float
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Mutation {
   createTag(newTag: CreateTagInput!): Tag!
   createTodo(newTodo: CreateTodoInput!): Todo!
   updateTodo(id: String!, updatedTodo: CreateTodoInput!): Todo!
 }
 
+"""province"""
+type Province {
+  combinedKey: String!
+  country: String!
+  iso: String!
+  lat: String!
+  long: String!
+  population: String
+  provinceState: String!
+}
+
 type Query {
   getAll: [Todo!]!
+  getCountries: [Country!]!
+  getCountryReports(countryIso: String!, endDate: String!, startDate: String!): [DailyReportModel!]!
+  getProvinceReports(countryIso: String!, endDate: String!, province: String!, startDate: String!): [DailyReportModel!]!
   getTag(id: String!): Tag!
   getTags(ids: [String!]!): [Tag!]!
   getTodo(id: String!): Todo!

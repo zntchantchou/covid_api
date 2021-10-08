@@ -1,24 +1,27 @@
 
   
   
-  ✘ Create Tag dtos @cancelled(21-10-05 14:06)
-  ✘ Create Todo dtos @cancelled(21-10-05 11:06)
-  ✔ Create Todo schema @started(21-10-05 10:18) @done(21-10-05 11:06) @lasted(48m21s)
-  ✔ Create Todo providers @started(21-10-05 10:29) @done(21-10-05 11:06) @lasted(37m25s)
-  ✔ Create Todo gql types @done(21-10-05 11:06)
-  ✔ Create Tag providers @done(21-10-05 12:21)
-  ✔ Create Tag schema @done(21-10-05 14:06)
-  ✔ Create Todo resolvers @started(21-10-05 12:20) @done(21-10-05 14:06) @lasted(1h46m32s)
-  ✔ Create Tag gql types @done(21-10-05 14:06)
+    Done:
+
+    ✔ seed script @done(21-10-07 14:50)
+    ✔ make seed script executable by itself @done(21-10-07 14:50)
+    ✔ use country lookup json to populate population @done(21-10-08 09:25)
+    ✔ can a more efficient date type be used for mongo? @done(21-10-08 09:25)
+   
+  Todo: 
+
+    ☐ seed all data 
+    ☐ create a date type and an error if input is not formatted  
+    ☐ add sorting by country (from: date, to : date:, country: isocode) @started(21-10-08 10:37)
+    ☐ import create getReports (from: date, to : date:, country: isocode) 
+    ☐ how to limit how much data we send ?  
+    ☐ handle no combined key on report at model or formatting level
+    ☐ Add comments for query and mutation arguments
+    
+
   
-  
-  Todo:
-  ☐ export resolvers
-  ☐ Create Todo service
-  ☐ Create Todo module
-  ☐ Create Tag module
-  ☐ Create Tag service
-  ☐ Create Tag resolvers 
+
+
 
 
 

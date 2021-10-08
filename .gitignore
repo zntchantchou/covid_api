@@ -1,7 +1,14 @@
 # compiled output
+
+# my excludes *start*
+
+/data
+/scripts/lookupTable
+
+# my excludes *end*
+
 /dist
 /node_modules
-
 # Logs
 logs
 *.log

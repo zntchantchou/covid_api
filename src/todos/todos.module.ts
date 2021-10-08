@@ -4,7 +4,7 @@ import { TagsModule } from 'src/tags/tags.module';
 import { tagsProviders } from 'src/tags/tags.providers';
 import { TagsService } from 'src/tags/tags.service';
 import { todosProviders } from './todos.providers';
-import { TodosResolvers } from './todos.resolver';
+import { TodosResolvers } from './todos.resolvers';
 import { TodosService } from './todos.service';
 
 @Module({
