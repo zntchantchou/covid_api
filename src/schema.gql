@@ -51,4 +51,5 @@ type Query {
   getCountryReports(countryIso: String!, endDate: String, startDate: String): [DailyReportModel!]!
   getProvinceReports(countryIso: String!, province: String!, startDate: String, endDate: String): [DailyReportModel!]!
   getCountries: [Country!]!
+  getCountry(iso: String!): Country!
 }

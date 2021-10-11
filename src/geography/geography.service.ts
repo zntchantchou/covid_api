@@ -4,8 +4,11 @@ import { Country } from './country.model';
 
 @Injectable()
 export class GeographyService {
-
-public getCountries(): Country[] {
+  public getCountries(): Country[] {
     return geographiesJson as Country[];
+  }
+
+  public getCountry(iso: string): Country {
+    return geographiesJson.find((c) => c.iso === iso);
   }
 }

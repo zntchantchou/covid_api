@@ -8,6 +8,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface DailyReportModel {
+    __typename?: 'DailyReportModel';
     fips?: Nullable<number>;
     provinceState?: Nullable<string>;
     countryRegion?: Nullable<string>;
@@ -25,6 +26,7 @@ export interface DailyReportModel {
 }
 
 export interface Province {
+    __typename?: 'Province';
     country: string;
     iso: string;
     population?: Nullable<string>;
@@ -35,6 +37,7 @@ export interface Province {
 }
 
 export interface Country {
+    __typename?: 'Country';
     country: string;
     iso: string;
     population?: Nullable<string>;
@@ -45,9 +48,11 @@ export interface Country {
 }
 
 export interface IQuery {
+    __typename?: 'IQuery';
     getCountryReports(countryIso: string, endDate?: Nullable<string>, startDate?: Nullable<string>): DailyReportModel[] | Promise<DailyReportModel[]>;
     getProvinceReports(countryIso: string, province: string, startDate?: Nullable<string>, endDate?: Nullable<string>): DailyReportModel[] | Promise<DailyReportModel[]>;
     getCountries(): Country[] | Promise<Country[]>;
+    getCountry(iso: string): Country | Promise<Country>;
 }
 
 export type DateTime = any;

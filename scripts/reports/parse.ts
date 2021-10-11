@@ -14,11 +14,9 @@ create cron job to :
 // TODO add function to dl all of data
 
 export class DailyReportParser {
-  constructor() {}
-
   // variables
-  private defaultFolder = `${process.cwd()}`;
-  // private defaultFolder = `${process.cwd()}/data/dailyTests`;
+  // private defaultFolder = `${process.cwd()}`;
+  private defaultFolder = `${process.cwd()}/data/dailyTests`;
 
   // methods
   private async getFileNames(
@@ -44,13 +42,14 @@ export class DailyReportParser {
           this.isValidDate(r.Last_Update),
       )
       .map(formatReport)
-      .map(this.addIsoCode)
+      .map(this.addIsoCode);
   }
 
   private addIsoCode(report: IDailyReportValue) {
     return {
       ...report,
-      iso: lookupTable.find((elt) => elt.Combined_Key === report.combinedKey)?.iso3,
+      iso: lookupTable.find((elt) => elt.Combined_Key === report.combinedKey)
+        ?.iso3,
     };
   }
 
