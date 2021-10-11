@@ -3,7 +3,7 @@ import { readFile, readdir } from 'fs/promises';
 import { formatReport } from './formatters';
 import { IDailyReportValue, IRawDailyReportValue } from './types';
 import { unformattedDateRgx } from './constants';
-import * as lookupTable from 'scripts/lookupTable/lookupTable.json';
+import * as lookupTable from 'scripts/reports/lookupTable.json';
 /**
 create cron job to :  
 - download new report
@@ -17,8 +17,8 @@ export class DailyReportParser {
   constructor() {}
 
   // variables
-  // private defaultFolder = `${process.cwd()}/data/dailyReports`;
-  private defaultFolder = `${process.cwd()}/data/dailyTests`;
+  private defaultFolder = `${process.cwd()}`;
+  // private defaultFolder = `${process.cwd()}/data/dailyTests`;
 
   // methods
   private async getFileNames(
@@ -54,7 +54,7 @@ export class DailyReportParser {
     };
   }
 
-  private async parseCSV(filename: string) {
+  public async parseCSV(filename: string) {
     const csvString = await readFile(
       `${this.defaultFolder}/${filename}`,
       'utf-8',

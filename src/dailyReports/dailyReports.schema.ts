@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-import { TagSchema } from 'src/tags/tags.schema';
 
 export const DailyReportSchema = new mongoose.Schema({
   fips:  { type: Number, required: false },

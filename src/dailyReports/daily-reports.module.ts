@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from 'src/db/database.module';
+import { DatabaseModule } from 'src/_db/database.module';
 import { DailyReportsService } from 'src/dailyReports/daily-reports.service';
 import { dailyReportsProviders } from 'src/dailyReports/dailyReports.providers';
 import { DailyReportSeeder } from 'src/dailyReports/dailyReports.seeder';

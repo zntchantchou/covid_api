@@ -2,44 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-"""country"""
-type Country {
-  combinedKey: String!
-  country: String!
-  iso: String!
-  lat: String!
-  long: String!
-  population: String
-  provinces: [Province!]!
-}
-
-input CreateTagInput {
-  name: String!
-}
-
-input CreateTodoInput {
-  deadline: String
-  isCompleted: Boolean!
-  tags: [String!]
-  title: String!
-}
-
 """dailyReport"""
 type DailyReportModel {
-  active: Float
-  caseFatalityRatio: Float
-  combinedKey: String
-  confirmed: Float
-  countryRegion: String
-  createdAt: DateTime
-  deaths: Float
   fips: Float
-  incidenceRate: Float
-  iso: String
+  provinceState: String
+  countryRegion: String
+  confirmed: Float
+  deaths: Float
+  recovered: Float
+  active: Float
+  createdAt: DateTime
+  combinedKey: String
   lat: Float
   long: Float
-  provinceState: String
-  recovered: Float
+  caseFatalityRatio: Float
+  incidenceRate: Float
+  iso: String
 }
 
 """
@@ -47,44 +25,30 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Mutation {
-  createTag(newTag: CreateTagInput!): Tag!
-  createTodo(newTodo: CreateTodoInput!): Todo!
-  updateTodo(id: String!, updatedTodo: CreateTodoInput!): Todo!
-}
-
 """province"""
 type Province {
-  combinedKey: String!
   country: String!
   iso: String!
+  population: String
+  combinedKey: String!
   lat: String!
   long: String!
-  population: String
   provinceState: String!
 }
 
+"""country"""
+type Country {
+  country: String!
+  iso: String!
+  population: String
+  combinedKey: String!
+  lat: String!
+  long: String!
+  provinces: [Province!]!
+}
+
 type Query {
-  getAll: [Todo!]!
+  getCountryReports(countryIso: String!, endDate: String, startDate: String): [DailyReportModel!]!
+  getProvinceReports(countryIso: String!, province: String!, startDate: String, endDate: String): [DailyReportModel!]!
   getCountries: [Country!]!
-  getCountryReports(countryIso: String!, endDate: String!, startDate: String!): [DailyReportModel!]!
-  getProvinceReports(countryIso: String!, endDate: String!, province: String!, startDate: String!): [DailyReportModel!]!
-  getTag(id: String!): Tag!
-  getTags(ids: [String!]!): [Tag!]!
-  getTodo(id: String!): Todo!
-}
-
-"""tag"""
-type Tag {
-  id: ID!
-  name: String!
-}
-
-"""todo"""
-type Todo {
-  deadline: String
-  id: ID!
-  isCompleted: Boolean!
-  tags: [Tag!]
-  title: String!
 }

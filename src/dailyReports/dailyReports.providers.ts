@@ -1,6 +1,6 @@
 import {Connection} from 'mongoose';
 import { DailyReportSchema } from './dailyReports.schema';
-import { models, config } from 'src/db/constants';
+import { models, config } from 'src/_db/constants';
 
 export const dailyReportsProviders = [{
   provide: models.dailyReports, 

@@ -7,16 +7,16 @@
     ✔ make seed script executable by itself @done(21-10-07 14:50)
     ✔ use country lookup json to populate population @done(21-10-08 09:25)
     ✔ can a more efficient date type be used for mongo? @done(21-10-08 09:25)
+    ✔ add sorting by country (from: date, to : date:, country: isocode) @started(21-10-08 10:37) @done(21-10-11 14:39) @lasted(3d4h2m21s)
+    ✔ handle no combined key on report at model or formatting level @done(21-10-11 14:39)
    
   Todo: 
 
-    ☐ seed all data 
+    ☐ use selection fields to inform all mongodb queries, find packages? 
+    ☐  add handle special values for getCountriesReport in service
     ☐ create a date type and an error if input is not formatted  
-    ☐ add sorting by country (from: date, to : date:, country: isocode) @started(21-10-08 10:37)
-    ☐ import create getReports (from: date, to : date:, country: isocode) 
-    ☐ how to limit how much data we send ?  
-    ☐ handle no combined key on report at model or formatting level
     ☐ Add comments for query and mutation arguments
+    ☐ seed all data 
     
 
   

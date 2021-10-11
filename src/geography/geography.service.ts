@@ -6,7 +6,6 @@ import { Country } from './country.model';
 export class GeographyService {
 
 public getCountries(): Country[] {
-  // @ts-ignore
     return geographiesJson as Country[];
   }
 }

@@ -1,17 +1,20 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { models } from 'src/db/constants';
+import { models } from 'src/_db/constants';
 import { DailyReportModel } from './dailyReports.model';
 import { Model } from 'mongoose';
 import { IDailyReportValue } from 'scripts/reports/types';
-import { GetCountryReportsDTO, GetProvinceReportsDTO} from './dto/dto';
+import { GetCountryReportsDTO, GetProvinceReportsDTO } from './dto/dto';
 import { isDate } from 'date-fns';
 import { GraphQLError } from 'graphql';
+import * as graphqlFields from 'graphql-fields';
+import { DatabaseUtils } from 'src/_db/database.utils';
 
 @Injectable()
 export class DailyReportsService {
   constructor(
     @Inject(models.dailyReports)
     private dailyReportModel: Model<DailyReportModel>,
+    private databaseUtils: DatabaseUtils,
   ) {}
 
   async saveReports(dailyReports: IDailyReportValue[]) {
@@ -28,40 +31,44 @@ export class DailyReportsService {
     }
   }
 
-  async getCountryReports({startDate, endDate, countryIso}: GetCountryReportsDTO) {
+  async getCountryReports(info: any, {
+    startDate,
+    endDate,
+    countryIso,
+  }: GetCountryReportsDTO) {
+    let fields = Object.keys(graphqlFields(info));
     try {
       let searchParams: any = {
-        iso: countryIso,
+        iso: countryIso.toUpperCase(),
         provinceState: '',
       };
-      let dateFilter = {createdAt: {}};
-      if(startDate && isDate(new Date(startDate))) dateFilter = {createdAt: {"$gte": new Date(startDate)}}
-      if(endDate && isDate(new Date(endDate))) dateFilter = {createdAt: {...dateFilter.createdAt, "$lte": new Date(endDate)}}
-      searchParams = {...searchParams, ...dateFilter};
-      const reports = this.dailyReportModel
-      .find(searchParams)
-
-      return reports;
-    } catch(e) {}
+      const dateFilter = this.databaseUtils.createDateFilter(startDate, endDate, 'createdAt');
+      searchParams = { ...searchParams, ...dateFilter };
+     return this.dailyReportModel
+     .find(searchParams)
+     .select(fields.join(' '))
+    } catch (e) {}
   }
 
-  async getProvinceReports({startDate, endDate, countryIso, province}: GetProvinceReportsDTO) {
+  async getProvinceReports({
+    startDate,
+    endDate,
+    countryIso,
+    province,
+  }: GetProvinceReportsDTO) {
     try {
-      if(!province) {
-        return new GraphQLError("The province field cannot have a falsy value , such as '', please provide a valid value");
+      if (!province) {
+        return new GraphQLError(
+          "The province field cannot have a falsy value , such as '', please provide a valid value",
+        );
       }
       let searchParams: any = {
         iso: countryIso,
         provinceState: province,
       };
-      let dateFilter = {createdAt: {}};
-      if(startDate && isDate(new Date(startDate))) dateFilter = {createdAt: {"$gte": new Date(startDate)}}
-      if(endDate && isDate(new Date(endDate))) dateFilter = {createdAt: {...dateFilter.createdAt, "$lte": new Date(endDate)}}
-      searchParams = {...searchParams, ...dateFilter};
-      const reports = this.dailyReportModel
-      .find(searchParams)
-
-      return reports;
-    } catch(e) {}
+      const dateFilter = this.databaseUtils.createDateFilter(startDate, endDate, 'createAt');
+      searchParams = { ...searchParams, ...dateFilter };
+      return this.dailyReportModel.find(searchParams);
+    } catch (e) {}
   }
 }
