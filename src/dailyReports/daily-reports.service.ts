@@ -1,10 +1,9 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { models } from 'src/_db/constants';
-import { DailyReportModel } from './dailyReports.model';
+import { DailyReport } from './dailyReports.model';
 import { Model } from 'mongoose';
 import { IDailyReportValue } from 'scripts/reports/types';
 import { GetCountryReportsDTO, GetProvinceReportsDTO } from './dto/dto';
-import { isDate } from 'date-fns';
 import { GraphQLError } from 'graphql';
 import * as graphqlFields from 'graphql-fields';
 import { DatabaseUtils } from 'src/_db/database.utils';
@@ -13,7 +12,7 @@ import { DatabaseUtils } from 'src/_db/database.utils';
 export class DailyReportsService {
   constructor(
     @Inject(models.dailyReports)
-    private dailyReportModel: Model<DailyReportModel>,
+    private dailyReportModel: Model<DailyReport>,
     private databaseUtils: DatabaseUtils,
   ) {}
 
@@ -31,22 +30,26 @@ export class DailyReportsService {
     }
   }
 
-  async getCountryReports(info: any, {
-    startDate,
-    endDate,
-    countryIso,
-  }: GetCountryReportsDTO) {
-    let fields = Object.keys(graphqlFields(info));
+  async getCountryReports(
+    info: any,
+    { startDate, endDate, countryIso }: GetCountryReportsDTO,
+  ) {
+    const fields = Object.keys(graphqlFields(info));
     try {
       let searchParams: any = {
         iso: countryIso.toUpperCase(),
         provinceState: '',
       };
-      const dateFilter = this.databaseUtils.createDateFilter(startDate, endDate, 'createdAt');
+      const dateFilter = this.databaseUtils.createDateFilter(
+        startDate,
+        endDate,
+        'createdAt',
+      );
       searchParams = { ...searchParams, ...dateFilter };
-     return this.dailyReportModel
-     .find(searchParams)
-     .select(fields.join(' '))
+      return this.dailyReportModel
+        .find(searchParams)
+        .sort({ createdAt: 1 })
+        .select(fields.join(' '));
     } catch (e) {}
   }
 
@@ -66,7 +69,11 @@ export class DailyReportsService {
         iso: countryIso,
         provinceState: province,
       };
-      const dateFilter = this.databaseUtils.createDateFilter(startDate, endDate, 'createAt');
+      const dateFilter = this.databaseUtils.createDateFilter(
+        startDate,
+        endDate,
+        'createdAt',
+      );
       searchParams = { ...searchParams, ...dateFilter };
       return this.dailyReportModel.find(searchParams);
     } catch (e) {}

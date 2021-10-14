@@ -1,6 +1,7 @@
 import { Resolver, Query, Args, Info } from '@nestjs/graphql';
 import { DailyReportsService } from './daily-reports.service';
-import { DailyReportModel as DailyReport } from './dailyReports.model';
+import { DailyReport } from './dailyReports.model';
+import * as graphqlFields from 'graphql-fields';
 
 @Resolver(() => DailyReport)
 export class DailyReportResolvers {
@@ -15,6 +16,7 @@ export class DailyReportResolvers {
     @Args('countryIso', { type: () => String }) countryIso: string,
     @Info() info: any,
   ) {
+    console.log('getCountryReports ONCE', Object.keys(graphqlFields(info)));
     return this.dailyReportService.getCountryReports(info, {
       countryIso,
       startDate,

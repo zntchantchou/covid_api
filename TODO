@@ -10,13 +10,14 @@
     ✔ add sorting by country (from: date, to : date:, country: isocode) @started(21-10-08 10:37) @done(21-10-11 14:39) @lasted(3d4h2m21s)
     ✔ handle no combined key on report at model or formatting level @done(21-10-11 14:39)
     ✔ use selection fields to inform all mongodb queries, find packages? @done(21-10-11 15:54)
+    ✔ seed data for a month (3 x 1 week) @done(21-10-14 08:40)
+    ✔ download and seed missing data from past days @done(21-10-14 08:59)
    
   Todo: 
 
-    ☐ create a date type and an error if input is not formatted  
+    ☐ getCountryReports default period to one week @started(21-10-14 11:02)
     ☐ Add comments for query and mutation arguments
-    ☐ add handle special values for getCountriesReport in service
-    ☐ seed all data 
+    ☐ handle hours at 23.00 on DailyReports 
     
 
   

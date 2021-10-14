@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 """dailyReport"""
-type DailyReportModel {
+type DailyReport {
   fips: Float
   provinceState: String
   countryRegion: String
@@ -48,8 +48,8 @@ type Country {
 }
 
 type Query {
-  getCountryReports(countryIso: String!, endDate: String, startDate: String): [DailyReportModel!]!
-  getProvinceReports(countryIso: String!, province: String!, startDate: String, endDate: String): [DailyReportModel!]!
+  getCountryReports(countryIso: String!, endDate: String, startDate: String): [DailyReport!]!
+  getProvinceReports(countryIso: String!, province: String!, startDate: String, endDate: String): [DailyReport!]!
   getCountries: [Country!]!
   getCountry(iso: String!): Country!
 }

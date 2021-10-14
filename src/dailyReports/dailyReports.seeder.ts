@@ -10,7 +10,6 @@ export class DailyReportSeeder {
     const dailyReports = await parser.parseReportsInFolder();
     if (dailyReports && dailyReports.length) {
       await this.drService.saveReports(dailyReports);
-    } else {
       console.log(
         `[DailyReportSeeder] ${dailyReports.length} reports were parsed`,
       );

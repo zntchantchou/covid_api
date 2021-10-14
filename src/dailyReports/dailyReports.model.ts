@@ -1,8 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-// interface used to generate schema 
+// interface used to generate schema
 
 @ObjectType({ description: 'dailyReport' })
-export class DailyReportModel {
+export class DailyReport {
   @Field({ nullable: true })
   fips: Number;
   @Field({ nullable: true })
@@ -22,7 +22,7 @@ export class DailyReportModel {
   @Field({ nullable: true })
   combinedKey: String;
   @Field({ nullable: true })
-  lat: Number
+  lat: Number;
   @Field({ nullable: true })
   long: Number;
   @Field({ nullable: true })
@@ -32,4 +32,3 @@ export class DailyReportModel {
   @Field({ nullable: true })
   iso: String;
 }
-

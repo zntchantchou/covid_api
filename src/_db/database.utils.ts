@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { isDate } from 'date-fns';
-
+import { isDate, sub } from 'date-fns';
 
 interface IDateFilter {
-  [index: string]: { [index: string]: Date}
-};
+  [index: string]: { [index: string]: Date };
+}
 
 @Injectable()
 export class DatabaseUtils {
   createDateFilter(startDate, endDate, fieldName): IDateFilter {
-    let dateFilter = startDate || endDate ? { [fieldName]: {} } : {};
+    // if no dates are provided , selects the past week by default (8 days because data for today is not available)
+    let dateFilter =
+      startDate || endDate
+        ? { [fieldName]: {} }
+        : { [fieldName]: { $gte: sub(new Date(), { days: 8 }) } };
     if (startDate && isDate(new Date(startDate))) {
       dateFilter = { [fieldName]: { $gte: new Date(startDate) } };
     }
@@ -21,5 +24,3 @@ export class DatabaseUtils {
     return dateFilter;
   }
 }
-
-
