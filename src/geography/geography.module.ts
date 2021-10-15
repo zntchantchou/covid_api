@@ -3,7 +3,6 @@ import { GeographyResolvers } from './geography.resolvers';
 import { GeographyService } from './geography.service';
 
 @Module({
-  providers: [GeographyResolvers, GeographyService]
+  providers: [GeographyResolvers, GeographyService],
 })
-export class GeographyModule {
-}
+export class GeographyModule {}

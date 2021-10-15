@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as geographiesJson from './geographies.json';
-import { Country } from './country.model';
+import { Country } from 'src/interfaces';
 
 @Injectable()
 export class GeographyService {

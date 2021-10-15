@@ -44,11 +44,21 @@ export interface Country {
     provinces: Province[];
 }
 
+export interface User {
+    firstName: string;
+    lastName: string;
+    email: string;
+    service: string;
+    avatar: string;
+    position: string;
+}
+
 export interface IQuery {
     getCountryReports(countryIso: string, endDate?: Nullable<string>, startDate?: Nullable<string>): DailyReport[] | Promise<DailyReport[]>;
     getProvinceReports(countryIso: string, province: string, startDate?: Nullable<string>, endDate?: Nullable<string>): DailyReport[] | Promise<DailyReport[]>;
     getCountries(): Country[] | Promise<Country[]>;
     getCountry(iso: string): Country | Promise<Country>;
+    getUser(): User | Promise<User>;
 }
 
 export type DateTime = any;

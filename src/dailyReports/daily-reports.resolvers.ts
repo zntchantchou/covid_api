@@ -1,13 +1,13 @@
 import { Resolver, Query, Args, Info } from '@nestjs/graphql';
 import { DailyReportsService } from './daily-reports.service';
-import { DailyReport } from './dailyReports.model';
+import { DailyReport } from 'src/interfaces';
 import * as graphqlFields from 'graphql-fields';
 
-@Resolver(() => DailyReport)
+@Resolver()
 export class DailyReportResolvers {
   constructor(private dailyReportService: DailyReportsService) {}
 
-  @Query(() => [DailyReport])
+  @Query()
   async getCountryReports(
     // a comment i would like to see in the editor
     @Args('startDate', { type: () => String, nullable: true })
@@ -24,7 +24,7 @@ export class DailyReportResolvers {
     });
   }
 
-  @Query(() => [DailyReport])
+  @Query()
   async getProvinceReports(
     @Args('endDate', { type: () => String, nullable: true }) endDate: string,
     @Args('startDate', { type: () => String, nullable: true })

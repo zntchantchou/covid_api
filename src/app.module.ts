@@ -6,17 +6,23 @@ import { join } from 'path';
 import { cwd } from 'process';
 import { DailyReportsModule } from './dailyReports/daily-reports.module';
 import { GeographyModule } from './geography/geography.module';
+import { mocks } from 'src/_mocks/mocks';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      autoSchemaFile: join(cwd(), 'src/schema.gql'),
+      // autoSchemaFile: join(cwd(), 'src/schema.gql'),
       definitions: {
-        path: join(cwd(), 'src/graphql.ts'),
+        path: join(cwd(), 'src/interfaces.ts'),
       },
+      typePaths: ['./**/*.gql'],
+      mocks,
+      mockEntireSchema: false,
     }),
     DailyReportsModule,
     GeographyModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { models } from 'src/_db/constants';
-import { DailyReport } from './dailyReports.model';
+// import { DailyReport } from './dailyReports.model';
+import { DailyReport } from 'src/interfaces';
 import { Model } from 'mongoose';
 import { IDailyReportValue } from 'scripts/reports/types';
 import { GetCountryReportsDTO, GetProvinceReportsDTO } from './dto/dto';
