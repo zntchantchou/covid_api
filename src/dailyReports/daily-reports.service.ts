@@ -1,11 +1,9 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { models } from 'src/_db/constants';
-// import { DailyReport } from './dailyReports.model';
 import { DailyReport } from 'src/interfaces';
 import { Model } from 'mongoose';
 import { IDailyReportValue } from 'scripts/reports/types';
-import { GetCountryReportsDTO, GetProvinceReportsDTO } from './dto/dto';
-import { GraphQLError } from 'graphql';
+import { GetCountryReportsDTO } from './dto/dto';
 import * as graphqlFields from 'graphql-fields';
 import { DatabaseUtils } from 'src/_db/database.utils';
 
@@ -24,7 +22,6 @@ export class DailyReportsService {
   async saveReport(dailyReport: IDailyReportValue) {
     try {
       const report = new this.dailyReportModel(dailyReport);
-      console.log(report);
       return await report.save();
     } catch (e) {
       console.log(e);
@@ -35,7 +32,9 @@ export class DailyReportsService {
     info: any,
     { startDate, endDate, countryIso }: GetCountryReportsDTO,
   ) {
+    // uses a package to get the query's fields easily
     const fields = Object.keys(graphqlFields(info));
+    console.log('fields', fields);
     try {
       let searchParams: any = {
         iso: countryIso.toUpperCase(),
@@ -51,32 +50,6 @@ export class DailyReportsService {
         .find(searchParams)
         .sort({ createdAt: 1 })
         .select(fields.join(' '));
-    } catch (e) {}
-  }
-
-  async getProvinceReports({
-    startDate,
-    endDate,
-    countryIso,
-    province,
-  }: GetProvinceReportsDTO) {
-    try {
-      if (!province) {
-        return new GraphQLError(
-          "The province field cannot have a falsy value , such as '', please provide a valid value",
-        );
-      }
-      let searchParams: any = {
-        iso: countryIso,
-        provinceState: province,
-      };
-      const dateFilter = this.databaseUtils.createDateFilter(
-        startDate,
-        endDate,
-        'createdAt',
-      );
-      searchParams = { ...searchParams, ...dateFilter };
-      return this.dailyReportModel.find(searchParams);
     } catch (e) {}
   }
 }

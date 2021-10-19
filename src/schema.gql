@@ -1,4 +1,7 @@
 
+
+directive @upper on FIELD_DEFINITION 
+
 """dailyReport"""
 type DailyReport {
   fips: Float
@@ -9,7 +12,7 @@ type DailyReport {
   recovered: Float
   active: Float
   createdAt: DateTime
-  combinedKey: String
+  combinedKey: String @upper
   lat: Float
   long: Float
   caseFatalityRatio: Float
@@ -35,9 +38,9 @@ type Province {
 
 """country"""
 type Country {
-  country: String!
-  iso: String!
-  population: String
+  country: String! @upper
+  iso: String! 
+  population: String @deprecated(reason: "My own custom reason")
   combinedKey: String!
   lat: String!
   long: String!
@@ -56,8 +59,8 @@ type User {
 
 type Query {
   getCountryReports(countryIso: String!, endDate: String, startDate: String): [DailyReport!]!
-  getProvinceReports(countryIso: String!, province: String!, startDate: String, endDate: String): [DailyReport!]!
   getCountries: [Country!]!
   getCountry(iso: String!): Country!
   getUser: User!
 }
+

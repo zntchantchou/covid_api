@@ -12,12 +12,27 @@
     ✔ use selection fields to inform all mongodb queries, find packages? @done(21-10-11 15:54)
     ✔ seed data for a month (3 x 1 week) @done(21-10-14 08:40)
     ✔ download and seed missing data from past days @done(21-10-14 08:59)
+    ✔ getCountryReports default period to one week @started(21-10-14 11:02) @done(21-10-18 09:20) @lasted(3d22h18m34s)
+    ✔ add latest data @done(21-10-18 09:20)
+    ✔ log query info and obj @started(21-10-18 09:21) @done(21-10-18 10:01) @lasted(40m53s)
+    ✔ create presentation slides using template @done(21-10-18 14:05)
    
-  Todo: 
+    cancelled: 
+    ✘ handle hours at 23.00 on DailyReports @cancelled(21-10-18 09:08)
+  
+    Todo: 
+      ☐ Add directives @started(21-10-18 14:06)
+      ☐ Ajouter logos
+      ☐ try subscriptions
+      ☐ Add comments for query and mutation arguments
+      ☐ try renaming types
+    
+    
 
-    ☐ getCountryReports default period to one week @started(21-10-14 11:02)
-    ☐ Add comments for query and mutation arguments
-    ☐ handle hours at 23.00 on DailyReports 
+
+
+
+    
 
 
       

@@ -8,17 +8,18 @@ import { DailyReportsModule } from './dailyReports/daily-reports.module';
 import { GeographyModule } from './geography/geography.module';
 import { mocks } from 'src/_mocks/mocks';
 import { UserModule } from './user/user.module';
+import { UpperCaseDirective } from 'src/_directives/upper';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      // autoSchemaFile: join(cwd(), 'src/schema.gql'),
       definitions: {
         path: join(cwd(), 'src/interfaces.ts'),
       },
       typePaths: ['./**/*.gql'],
       mocks,
       mockEntireSchema: false,
+      schemaDirectives: { upper: UpperCaseDirective },
     }),
     DailyReportsModule,
     GeographyModule,

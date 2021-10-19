@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import {DailyReportSeeder} from '../dailyReports/dailyReports.seeder'; // import Saver from 'scripts/reports/save';
-import {DailyReportsModule} from '../dailyReports/daily-reports.module';
+import { DailyReportSeeder } from '../dailyReports/dailyReports.seeder'; // import Saver from 'scripts/reports/save';
+import { DailyReportsModule } from '../dailyReports/daily-reports.module';
 
 async function bootstrap() {
   const ctx = await NestFactory.createApplicationContext(DailyReportsModule);

@@ -55,7 +55,6 @@ export interface User {
 
 export interface IQuery {
     getCountryReports(countryIso: string, endDate?: Nullable<string>, startDate?: Nullable<string>): DailyReport[] | Promise<DailyReport[]>;
-    getProvinceReports(countryIso: string, province: string, startDate?: Nullable<string>, endDate?: Nullable<string>): DailyReport[] | Promise<DailyReport[]>;
     getCountries(): Country[] | Promise<Country[]>;
     getCountry(iso: string): Country | Promise<Country>;
     getUser(): User | Promise<User>;

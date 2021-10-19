@@ -4,12 +4,6 @@ import { formatReport } from './formatters';
 import { IDailyReportValue, IRawDailyReportValue } from './types';
 import { unformattedDateRgx } from './constants';
 import * as lookupTable from 'scripts/reports/lookupTable.json';
-/**
-create cron job to :  
-- download new report
-- parse and format new report 
-- save new report 
-*/
 
 // TODO add function to dl all of data
 
